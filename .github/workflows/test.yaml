@@ -1,9 +1,9 @@
 ---
 on:
-  branches:
-    - "*"
+  push:
+    branches:
+      - "*"
   pull_requests:
-    - "*"
 
 name: Test
 

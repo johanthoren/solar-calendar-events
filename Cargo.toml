@@ -1,7 +1,15 @@
 [package]
 name = "solar-calendar-events"
+description = "A library for calculating Equinoxes and Solstices"
+authors = ["Johan Thorén <johan@thoren.xyz>"]
+readme = "README.md"
+license = "ISC"
+license-file = "LICENSE"
+repository = "https://github.com/johanthoren/solar-calendar-events"
 version = "0.1.0"
 edition = "2021"
+keywords = ["astronomy", "calendar", "equinox", "solstice", "julian"]
+categories = ["date-and-time"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

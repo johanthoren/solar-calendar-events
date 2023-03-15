@@ -1,4 +1,4 @@
-use time::{Date, Duration, Month, PrimitiveDateTime, Time};
+use time::{Date, Duration, Month, OffsetDateTime, PrimitiveDateTime, Time};
 
 trait JulianDayNumber {
     fn to_five_decimals(&self) -> f64;
@@ -11,12 +11,12 @@ impl JulianDayNumber for f64 {
     }
 }
 
-pub trait PrimitiveDateTimeExt {
+pub trait OffsetDateTimeExt {
     fn from_julian_day(julian_day: f64) -> Self;
 }
 
-impl PrimitiveDateTimeExt for PrimitiveDateTime {
-    fn from_julian_day(jdn: f64) -> PrimitiveDateTime {
+impl OffsetDateTimeExt for OffsetDateTime {
+    fn from_julian_day(jdn: f64) -> OffsetDateTime {
         let j: f64 = jdn.to_five_decimals() + 0.5;
         let z: i32 = j as i32;
         let f: f64 = j - z as f64;
@@ -84,13 +84,15 @@ impl PrimitiveDateTimeExt for PrimitiveDateTime {
             },
             Time::from_hms(hour, minute, second).expect("Unable to set the time!"),
         )
+        .assume_utc()
     }
 }
 
+#[derive(Debug)]
 pub struct MarchEquinox {
     year: i32,
     julian_day: Option<f64>,
-    date_time: Option<PrimitiveDateTime>,
+    date_time: Option<OffsetDateTime>,
 }
 
 impl MarchEquinox {
@@ -117,7 +119,7 @@ impl MarchEquinox {
             date_time: None,
         };
         event.julian_day = event.calculate_julian_day();
-        event.date_time = Some(PrimitiveDateTime::from_julian_day(
+        event.date_time = Some(OffsetDateTime::from_julian_day(
             event
                 .julian_day
                 .expect("Unable to calculate the Julian Day!"),
@@ -125,15 +127,17 @@ impl MarchEquinox {
         Some(event)
     }
 
-    pub fn date_time(&self) -> Option<PrimitiveDateTime> {
+    /// Returns the date and time of the March Equinox as an Option<OffsetDateTime>.
+    pub fn date_time(&self) -> Option<OffsetDateTime> {
         self.date_time
     }
 }
 
+#[derive(Debug)]
 pub struct JuneSolstice {
     year: i32,
     julian_day: Option<f64>,
-    date_time: Option<PrimitiveDateTime>,
+    date_time: Option<OffsetDateTime>,
 }
 
 impl JuneSolstice {
@@ -160,7 +164,7 @@ impl JuneSolstice {
             date_time: None,
         };
         event.julian_day = event.calculate_julian_day();
-        event.date_time = Some(PrimitiveDateTime::from_julian_day(
+        event.date_time = Some(OffsetDateTime::from_julian_day(
             event
                 .julian_day
                 .expect("Unable to calculate the Julian Day!"),
@@ -168,15 +172,17 @@ impl JuneSolstice {
         Some(event)
     }
 
-    pub fn date_time(&self) -> Option<PrimitiveDateTime> {
+    /// Returns the date and time of the June Solstice as an Option<OffsetDateTime>.
+    pub fn date_time(&self) -> Option<OffsetDateTime> {
         self.date_time
     }
 }
 
+#[derive(Debug)]
 pub struct SeptemberEquinox {
     year: i32,
     julian_day: Option<f64>,
-    date_time: Option<PrimitiveDateTime>,
+    date_time: Option<OffsetDateTime>,
 }
 
 impl SeptemberEquinox {
@@ -203,7 +209,7 @@ impl SeptemberEquinox {
             date_time: None,
         };
         event.julian_day = event.calculate_julian_day();
-        event.date_time = Some(PrimitiveDateTime::from_julian_day(
+        event.date_time = Some(OffsetDateTime::from_julian_day(
             event
                 .julian_day
                 .expect("Unable to calculate the Julian Day!"),
@@ -211,15 +217,17 @@ impl SeptemberEquinox {
         Some(event)
     }
 
-    pub fn date_time(&self) -> Option<PrimitiveDateTime> {
+    /// Returns the date and time of the September Equinox as an Option<OffsetDateTime>.
+    pub fn date_time(&self) -> Option<OffsetDateTime> {
         self.date_time
     }
 }
 
+#[derive(Debug)]
 pub struct DecemberSolstice {
     year: i32,
     julian_day: Option<f64>,
-    date_time: Option<PrimitiveDateTime>,
+    date_time: Option<OffsetDateTime>,
 }
 
 impl DecemberSolstice {
@@ -245,7 +253,7 @@ impl DecemberSolstice {
             date_time: None,
         };
         event.julian_day = event.calculate_julian_day();
-        event.date_time = Some(PrimitiveDateTime::from_julian_day(
+        event.date_time = Some(OffsetDateTime::from_julian_day(
             event
                 .julian_day
                 .expect("Unable to calculate the Julian Day!"),
@@ -253,7 +261,8 @@ impl DecemberSolstice {
         Some(event)
     }
 
-    pub fn date_time(&self) -> Option<PrimitiveDateTime> {
+    /// Returns the date and time of the December Solstice as an Option<OffsetDateTime>.
+    pub fn date_time(&self) -> Option<OffsetDateTime> {
         self.date_time
     }
 }

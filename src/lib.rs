@@ -7,7 +7,8 @@ trait JulianDayNumber {
 impl JulianDayNumber for f64 {
     fn to_five_decimals(&self) -> Self {
         let s = format!("{:.5}", self);
-        s.parse().expect(&format!("Unable to parse f64: {}", self))
+        s.parse()
+            .unwrap_or_else(|_| panic!("Unable to parse f64: {}", self))
     }
 }
 
@@ -110,7 +111,7 @@ impl MarchEquinox {
     /// Returns an Option containing a new MarchEquinox struct a year within the range 1900 to 2100.
     /// A year outside the range 1900-2100 will return None.
     pub fn new(year: i32) -> Option<MarchEquinox> {
-        if year < 1_900 || year > 2_100 {
+        if !(1_900..=2_100).contains(&year) {
             return None;
         }
         let mut event = MarchEquinox {
@@ -155,7 +156,7 @@ impl JuneSolstice {
     /// Returns an Option containing a new JuneSolstice struct for a year within the range 1900 to
     /// 2100. A year outside the range 1900-2100 will return None.
     pub fn new(year: i32) -> Option<JuneSolstice> {
-        if year < 1_900 || year > 2_100 {
+        if !(1_900..=2_100).contains(&year) {
             return None;
         }
         let mut event = JuneSolstice {
@@ -200,7 +201,7 @@ impl SeptemberEquinox {
     /// Returns an Option containing a new SeptemberEquinox struct for a year within the range 1900
     /// to 2100. A year outside the range 1900-2100 will return None.
     pub fn new(year: i32) -> Option<SeptemberEquinox> {
-        if year < 1_900 || year > 2_100 {
+        if !(1_900..=2_100).contains(&year) {
             return None;
         }
         let mut event = SeptemberEquinox {
@@ -237,14 +238,14 @@ impl DecemberSolstice {
         let m3 = m2 * m;
         let m4 = m3 * m;
         Some(
-            (2_451_900.0595_2 + 365_242.7404_9 * m + 0.0003_2 * m4) - 0.0622_3 * m2 - 0.008_23 * m3,
+            (2_451_900.059_52 + 365_242.740_49 * m + 0.0003_2 * m4) - 0.0622_3 * m2 - 0.008_23 * m3,
         )
     }
 
     /// Returns an Option containing a new DecemberSolstice struct for a year within the range 1900
     /// to 2100. A year outside the range 1900-2100 will return None.
     pub fn new(year: i32) -> Option<DecemberSolstice> {
-        if year < 1_900 || year > 2_100 {
+        if !(1_900..=2_100).contains(&year) {
             return None;
         }
         let mut event = DecemberSolstice {

@@ -24,8 +24,18 @@ jobs:
 
       - run: cargo test
 
+  security_audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: taiki-e/install-action@cargo-deny
+      - name: Scan for vulnerabilities
+        run: cargo deny check advisories
+
   publish:
-    needs: test
+    needs:
+      - test
+      - security_audit
     name: Publish Crate to crates.io
     runs-on: ubuntu-latest
     steps:

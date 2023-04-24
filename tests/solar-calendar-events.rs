@@ -88,15 +88,9 @@ mod tests {
             .iter()
             .map(|nasa| {
                 MarchEquinox::new(nasa.year())
-                    .expect(&format!(
-                        "Cannot calculate March equinox of {}",
-                        &nasa.year()
-                    ))
+                    .unwrap_or_else(|| panic!("Cannot calculate March equinox of {}", &nasa.year()))
                     .date_time()
-                    .expect(&format!(
-                        "Cannot calculate March equinox of {}",
-                        &nasa.year()
-                    ))
+                    .unwrap_or_else(|| panic!("Cannot calculate March equinox of {}", &nasa.year()))
                     - *nasa
             })
             .collect::<Vec<_>>();
@@ -124,10 +118,7 @@ mod tests {
             .iter()
             .map(|nasa| {
                 JuneSolstice::new(nasa.year())
-                    .expect(&format!(
-                        "Cannot calculate June Solstice of {}",
-                        &nasa.year()
-                    ))
+                    .unwrap_or_else(|| panic!("Cannot calculate June Solstice of {}", &nasa.year()))
                     .date_time()
                     .unwrap()
                     - *nasa
@@ -159,10 +150,9 @@ mod tests {
             .iter()
             .map(|nasa| {
                 SeptemberEquinox::new(nasa.year())
-                    .expect(&format!(
-                        "Cannot calculate September Equinox of {}",
-                        &nasa.year()
-                    ))
+                    .unwrap_or_else(|| {
+                        panic!("Cannot calculate September Equinox of {}", &nasa.year())
+                    })
                     .date_time()
                     .unwrap()
                     - *nasa
@@ -192,10 +182,9 @@ mod tests {
             .iter()
             .map(|nasa| {
                 DecemberSolstice::new(nasa.year())
-                    .expect(&format!(
-                        "Cannot calculate December Solstice of {}",
-                        &nasa.year()
-                    ))
+                    .unwrap_or_else(|| {
+                        panic!("Cannot calculate December Solstice of {}", &nasa.year())
+                    })
                     .date_time()
                     .unwrap()
                     - *nasa

@@ -1,3 +1,10 @@
+// Copyright (c) 2023-2024, Johan Thorén.
+//
+// Licensed under the Apache License, Version 2.0 <LICENSE or
+// http://www.apache.org/licenses/LICENSE-2.0> or the MIT license
+// <LICENSE or http://opensource.org/licenses/MIT>, at your
+// option. This file may not be copied, modified, or distributed
+// except according to those terms.
 use chrono::{DateTime, Datelike, NaiveDate, NaiveDateTime, NaiveTime, TimeDelta, Utc};
 use thiserror::Error;
 

@@ -111,7 +111,7 @@ mod time_utils {
     }
 }
 
-/// Trait for working with Julian Day numbers and converting them to DateTime<Utc>.
+/// Trait for working with Julian Day numbers and converting them to `DateTime<Utc>`.
 pub trait JulianDateTimeUtc {
     /// Converts a Julian Day number to a `DateTime<Utc>`.
     ///
@@ -167,14 +167,12 @@ pub trait AnnualSolarEvent {
     ///
     /// # Returns
     /// A `DateTime<Utc>` representing the date and time of the solar event.
-    /// ```
     fn date_time(&self) -> DateTime<Utc>;
 
     /// Returns the Julian Day Number of the solar event.
     ///
     /// # Returns
     /// The Julian Day Number of the solar event as a floating-point number.
-    /// ```
     fn julian_day(&self) -> f64;
 
     /// Returns the year for which the solar event is calculated.

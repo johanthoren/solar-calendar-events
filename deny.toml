@@ -1,0 +1,7 @@
+[licenses]
+allow = [
+    "Apache-2.0",
+    "ISC",
+    "MIT",
+    "Unicode-DFS-2016",
+]

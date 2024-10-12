@@ -7,15 +7,10 @@ Example usage:
 ``` rust
 let march_equinox_2003 = MarchEquinox::new(2003);
 println!("{:#?}", march_equinox_2003);
-// Some(
-//    MarchEquinox {
-//        year: 2003,
-//        julian_day: Some(
-//            2452719.536962585,
-//        ),
-//        date_time: Some(
-//            2003-03-21 0:53:13.0 +00:00:00,
-//        ),
-//    },
-//)
+// Ok(
+    // MarchEquinox {
+        // julian_day: 2452719.536962585,
+        // date_time: 2003-03-21T00:53:13Z,
+    // },
+// )
 ```

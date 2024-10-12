@@ -1,5 +1,9 @@
 # solar-calendar-events
 
+[![crates.io](https://img.shields.io/crates/v/solar-calendar-events.svg)](https://crates.io/crates/solar-calendar-events)
+[![Documentation](https://docs.rs/solar-calendar-events/badge.svg)](https://docs.rs/solar-calendar-events)
+[![ISC licensed](https://img.shields.io/crates/l/solar-calendar-events.svg)](./LICENSE)
+
 A Rust library designed to calculate equinoxes and solstices for a given year within the range 1900-2100. The accuracy is within a few minutes.
 
 Example usage:
